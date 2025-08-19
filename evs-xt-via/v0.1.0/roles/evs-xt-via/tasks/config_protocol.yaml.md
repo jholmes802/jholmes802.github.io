@@ -3,19 +3,19 @@
 ---
 - name: Set Tally Protocol
   evs_config:
-    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %} "
-    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %} "
-    line_number: "{% raw %} {{ item.config_line_number }} {% endraw %} "
+    server_ip: "{{ inventory_hostname }}"
+    session_id: "{{ evs_facts.session_id }}"
+    line_number: "{{ item.config_line_number }}"
     config_parameter: "CFG_PARAM_TALLY_PROTOCOL"
-    config_value: "{% raw %} {{ item.tally_protocol }} {% endraw %} "
-  loop: "{% raw %} {{ serverVars.config_lines }} {% endraw %} "
+    config_value: "{{ item.tally_protocol }}"
+  loop: "{{ serverVars.config_lines }}"
 
 - name: Set Tally Display Index
   evs_config:
-    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %} "
-    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %} "
-    line_number: "{% raw %} {{ item.config_line_number }} {% endraw %} "
+    server_ip: "{{ inventory_hostname }}"
+    session_id: "{{ evs_facts.session_id }}"
+    line_number: "{{ item.config_line_number }}"
     config_parameter: "CFG_PARAM_TALLY_FIRST_DISPLAY_INDEX"
-    config_value: "{% raw %} {{ item.tally_display_index }} {% endraw %} "
-  loop: "{% raw %} {{ serverVars.config_lines }} {% endraw %} "
+    config_value: "{{ item.tally_display_index }}"
+  loop: "{{ serverVars.config_lines }}"
 ```

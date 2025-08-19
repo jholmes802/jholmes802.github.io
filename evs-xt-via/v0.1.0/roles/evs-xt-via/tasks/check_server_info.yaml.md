@@ -5,8 +5,8 @@
 
 - name: Set Facility Name
   evs_server:
-    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %} "
-    facility_name: "{% raw %} {{ serverVars.facility_name }} {% endraw %} "
-    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %} "
+    server_ip: "{{ inventory_hostname }}"
+    facility_name: "{{ serverVars.facility_name }}"
+    session_id: "{{ evs_facts.session_id }}"
 
 ```

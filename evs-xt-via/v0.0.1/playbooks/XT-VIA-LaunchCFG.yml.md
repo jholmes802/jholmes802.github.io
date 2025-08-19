@@ -16,7 +16,7 @@
   tasks:
     - name: Launch Config Line
       ansible.builtin.uri:
-        url: http://{% raw %} {{ inventory_hostname }} {% endraw %} /cfgweb/CfgWeb.dll/LaunchConfigJS?NumLine={% raw %} {{ configLine | string }} {% endraw %} &SessionID=Reset
+        url: http://{{ inventory_hostname }}/cfgweb/CfgWeb.dll/LaunchConfigJS?NumLine={{ configLine | string }}&SessionID=Reset
         method: POST
         return_content: yes
       delegate_to: 127.0.0.1
@@ -26,5 +26,5 @@
 
     - name: Print Result
       ansible.builtin.debug:
-        msg: "{% raw %} {{ _result }} {% endraw %} "
+        msg: "{{ _result }}"
 ```

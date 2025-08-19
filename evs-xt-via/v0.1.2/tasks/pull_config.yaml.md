@@ -2,38 +2,38 @@
 ---
     - name: Slurp Config Lines
       get_url:
-        url: "ftp://evsData:evs!@{% raw %} {{ ansible_host }} {% endraw %} /setup/cfg000{% raw %} {{ '{:02}'.format(item) }} {% endraw %} .lin"
-        dest: "{% raw %} {{ config_line_path }} {% endraw %} "
-      loop: "{% raw %} {{ range(1, 17) | list }} {% endraw %} "
+        url: "ftp://evsData:evs!@{{ ansible_host }}/setup/cfg000{{ '{:02}'.format(item) }}.lin"
+        dest: "{{ config_line_path }}"
+      loop: "{{ range(1, 17) | list }}"
       delegate_to: 127.0.0.1
       ignore_errors: true
 
     - name: Slurp Live IP Configs
       get_url:
-        url: "ftp://evsData:evs!@{% raw %} {{ ansible_host }} {% endraw %} /setup/IPConfiguration{% raw %} {{ item | string }} {% endraw %} .cfg"
-        dest: "{% raw %} {{ liveip_path }} {% endraw %} "
-      loop: "{% raw %} {{ range(1, 17) | list }} {% endraw %} "
+        url: "ftp://evsData:evs!@{{ ansible_host }}/setup/IPConfiguration{{ item | string }}.cfg"
+        dest: "{{ liveip_path }}"
+      loop: "{{ range(1, 17) | list }}"
       delegate_to: 127.0.0.1
       ignore_errors: true
 
     - name: Get Options JSON
       get_url:
-        url: "ftp://evsData:evs!@{% raw %} {{ ansible_host }} {% endraw %} /user/options.json"
-        dest: "{% raw %} {{ options_path }} {% endraw %} "
+        url: "ftp://evsData:evs!@{{ ansible_host }}/user/options.json"
+        dest: "{{ options_path }}"
       delegate_to: 127.0.0.1
       ignore_errors: true
 
     - name: Get NMOS UUIDs
       get_url:
-        url: "ftp://evsData:evs!@{% raw %} {{ ansible_host }} {% endraw %} /NMOS/NMOS_Resource_Uuids.txt"
-        dest: "{% raw %} {{ nmos_path }} {% endraw %} "
+        url: "ftp://evsData:evs!@{{ ansible_host }}/NMOS/NMOS_Resource_Uuids.txt"
+        dest: "{{ nmos_path }}"
       delegate_to: 127.0.0.1
       ignore_errors: true
 
     - name: Get NMOS RDS Config
       get_url:
-        url: "ftp://evsData:evs!@{% raw %} {{ ansible_host }} {% endraw %} /user/nmos_node_options.json"
-        dest: "{% raw %} {{ nmos_path }} {% endraw %} "
+        url: "ftp://evsData:evs!@{{ ansible_host }}/user/nmos_node_options.json"
+        dest: "{{ nmos_path }}"
       delegate_to: 127.0.0.1
       ignore_errors: true
 ```
