@@ -300,7 +300,7 @@ class configLine:
         return self._data[paramName]
 
     def data(self):
-        result = {"numLine": self._numLine, "data": {k: v.data() for k, v in self._data.items()}} {% endraw %} 
+        result = {"numLine": self._numLine, "data": {k: v.data() for k, v in self._data.items()}}
         return result
 
 
