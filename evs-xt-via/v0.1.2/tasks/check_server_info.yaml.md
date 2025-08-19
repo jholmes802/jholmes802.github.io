@@ -1,0 +1,8 @@
+```yaml
+---
+- name: Set Facility Name
+  evs_server:
+    server_ip: "{{ ansible_host }}"
+    facility_name: "{{ facility_name }}"
+    session_id: "{{ evs_facts.session_id }}"
+```

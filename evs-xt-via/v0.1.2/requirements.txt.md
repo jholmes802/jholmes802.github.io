@@ -1,0 +1,8 @@
+```shell
+# Package requirements for this app
+
+requests
+tqdm
+ansible
+tenacity
+```

@@ -1,0 +1,74 @@
+```yaml
+---
+- name: Configure Base Config
+  evs_config:
+    server_ip: "{{ ansible_host }}"
+    session_id: "{{ evs_facts.session_id }}"
+    line_number: "{{ config_line_number }}"
+    config_parameter: "CFG_PARAM_QS_HD_OUTPUT_FORMAT"
+    config_value: "{{ mv_output_format }}"
+  # loop: "{{ serverVars.config_lines }}"
+
+- name: Configure MV Channels MV 1
+  evs_config:
+    server_ip: "{{ ansible_host }}"
+    session_id: "{{ evs_facts.session_id }}"
+    line_number: "{{ config_line_number }}"
+    config_parameter: "{{ item }}"
+    config_value: "None        "
+  when: play_channels == 0
+  loop:
+    - CFG_PARAM_QS_GRIDVALUE_1
+    - CFG_PARAM_QS_GRIDVALUE_2
+    - CFG_PARAM_QS_GRIDVALUE_3
+    - CFG_PARAM_QS_GRIDVALUE_4
+    - CFG_PARAM_QS2_GRIDVALUE_1
+    - CFG_PARAM_QS2_GRIDVALUE_2
+    - CFG_PARAM_QS2_GRIDVALUE_3
+    - CFG_PARAM_QS2_GRIDVALUE_4
+    - CFG_PARAM_QS3_GRIDVALUE_1
+    - CFG_PARAM_QS3_GRIDVALUE_2
+    - CFG_PARAM_QS3_GRIDVALUE_3
+    - CFG_PARAM_QS3_GRIDVALUE_4
+    - CFG_PARAM_QS4_GRIDVALUE_1
+    - CFG_PARAM_QS4_GRIDVALUE_2
+    - CFG_PARAM_QS4_GRIDVALUE_3
+    - CFG_PARAM_QS4_GRIDVALUE_4
+
+- name: Configure Audio Monitoring MV 1
+  evs_config:
+    server_ip: "{{ ansible_host }}"
+    session_id: "{{ evs_facts.session_id }}"
+    line_number: "{{ config_line_number }}"
+    config_parameter: "CFG_PARAM_QS_AUDIOMONITORINGVALUE"
+    config_value: "None        "
+  when: play_channels == 0
+
+- name: Configure Audio Monitoring MV 2
+  evs_config:
+    server_ip: "{{ ansible_host }}"
+    session_id: "{{ evs_facts.session_id }}"
+    line_number: "{{ config_line_number }}"
+    config_parameter: "CFG_PARAM_QS2_AUDIOMONITORINGVALUE"
+    config_value: "None        "
+  when: play_channels == 0
+
+- name: Configure Audio Monitoring MV 3
+  evs_config:
+    server_ip: "{{ ansible_host }}"
+    session_id: "{{ evs_facts.session_id }}"
+    line_number: "{{ config_line_number }}"
+    config_parameter: "CFG_PARAM_QS3_AUDIOMONITORINGVALUE"
+    config_value: "None        "
+  when: play_channels == 0
+
+- name: Configure Audio Monitoring MV 4
+  evs_config:
+    server_ip: "{{ ansible_host }}"
+    session_id: "{{ evs_facts.session_id }}"
+    line_number: "{{ config_line_number }}"
+    config_parameter: "CFG_PARAM_QS4_AUDIOMONITORINGVALUE"
+    config_value: "None        "
+  when: play_channels == 0
+
+```
