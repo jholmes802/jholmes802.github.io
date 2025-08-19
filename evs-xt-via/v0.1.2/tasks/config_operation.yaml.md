@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 - name: Set Clip Edit By Network
   evs_config:
     server_ip: "{{ ansible_host }}"

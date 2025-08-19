@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 - name: Save config
   evs_config_save:
     server_ip: "{{ ansible_host }}"

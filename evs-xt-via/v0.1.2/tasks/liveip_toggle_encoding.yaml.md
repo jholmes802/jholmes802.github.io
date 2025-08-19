@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 - name: Set 334M Encoding Off
   evs_config:
     server_ip: "{{ ansible_host }}"

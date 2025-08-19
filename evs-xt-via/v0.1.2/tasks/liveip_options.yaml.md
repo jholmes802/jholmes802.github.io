@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 ---
 # This is going to be hardware settings and Audio settings, this might be a bit of an odd duck.
 - name: Set PTP Domain

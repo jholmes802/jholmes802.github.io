@@ -1,6 +1,7 @@
 # XT-VIA-FacilityName.yml
 
 ```yaml
+{% raw %}
 - name: XT-VIA Send Config Lines
   hosts: xt-via
   remote_user: root
@@ -34,4 +35,5 @@
     - name: Print Result
       ansible.builtin.debug:
         msg: "{{ _result }}"
+{% endraw %}
 ```

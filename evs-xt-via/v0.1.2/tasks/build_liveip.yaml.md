@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 ---
 
 - name: Build Multicast JSON

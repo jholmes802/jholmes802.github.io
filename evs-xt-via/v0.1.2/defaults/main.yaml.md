@@ -1,5 +1,6 @@
 # main.yaml
 ```yaml
+{% raw %}
 showname: "test-show"
 multicam_version: "20.07.39"
 system_name: "SHOP"

@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 ---
 - name: Set Live IP MV Input Video Enabled
   evs_liveip:

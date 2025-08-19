@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 ---
     - name: Slurp Config Lines
       get_url:

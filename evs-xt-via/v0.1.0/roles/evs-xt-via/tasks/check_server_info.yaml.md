@@ -1,6 +1,7 @@
 # check_server_info.yaml
 
 ```yaml
+{% raw %}
 ---
 
 - name: Set Facility Name

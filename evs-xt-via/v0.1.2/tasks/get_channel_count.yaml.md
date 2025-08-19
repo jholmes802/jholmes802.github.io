@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 ---
 # This fetches the channel information from the server.
 - name: Get Record Channel Count

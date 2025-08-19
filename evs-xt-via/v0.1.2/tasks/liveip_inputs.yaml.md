@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 ---
 # Main Input Stuff
 - name: Set Live IP Input Video Enabled

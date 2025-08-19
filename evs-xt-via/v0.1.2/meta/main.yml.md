@@ -1,5 +1,6 @@
 # main.yaml
 ```yaml
+{% raw %}
 galaxy_info:
   role_name: evs_xt_via
   namespace: gcv

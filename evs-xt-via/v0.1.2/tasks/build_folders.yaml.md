@@ -1,5 +1,6 @@
 # build_folder.yaml
 ```yaml
+{% raw %}
 ---
 - name: Set Base EVS Config Path
   ansible.builtin.set_fact:

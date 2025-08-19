@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 ---
 - name: Set Live IP Multiviewer Output Video Enabled
   evs_liveip:

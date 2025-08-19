@@ -1,5 +1,6 @@
 # main.yaml
 ```yaml
+{% raw %}
 # Tasks file for EVS XT-VIA Setup and Config
 
 - name: Collect Info

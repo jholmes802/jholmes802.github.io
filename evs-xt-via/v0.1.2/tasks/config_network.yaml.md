@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 ---
 - name: Configure XNet Operation
   evs_config:

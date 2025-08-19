@@ -1,6 +1,7 @@
 # main.yaml
 
 ```yaml
+{% raw %}
 servers:
   - truck_number: "{{ inventory_hostname | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') | int}}"
     truck_ip: "{{ inventory_hostname }}"

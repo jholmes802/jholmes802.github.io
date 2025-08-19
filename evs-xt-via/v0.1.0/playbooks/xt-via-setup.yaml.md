@@ -1,5 +1,6 @@
 # xt-via-setup.yaml
 ```yaml
+{% raw %}
 ---
 - name: EVS XT-VIA Setup and Config Playbook
   hosts: xt-via

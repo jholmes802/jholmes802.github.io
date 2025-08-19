@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 - name: Load Options JSON into Variable
   set_fact:
     options_json_raw: "{{ lookup('file', options_path) }}"

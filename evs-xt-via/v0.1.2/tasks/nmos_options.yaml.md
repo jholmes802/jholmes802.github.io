@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 ---
 - name: Load NMOS Options JSON into Variable
   set_fact:

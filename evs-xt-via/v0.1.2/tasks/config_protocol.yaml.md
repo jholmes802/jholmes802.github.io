@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 ---
 - name: Set Tally Protocol
   evs_config:

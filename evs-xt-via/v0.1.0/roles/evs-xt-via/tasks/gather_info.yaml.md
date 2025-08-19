@@ -1,5 +1,6 @@
 # gather_info.yaml
 ```yaml
+{% raw %}
 ---
 - name: Gather info about the server
   evs_facts:

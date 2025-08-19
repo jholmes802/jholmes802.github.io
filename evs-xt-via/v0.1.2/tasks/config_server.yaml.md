@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 ---
 - name: Set Video Standard Field Rate
   evs_config:

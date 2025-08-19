@@ -1,4 +1,5 @@
 ```yaml
+{% raw %}
 ---
 - name: Configure Base Config
   evs_config:

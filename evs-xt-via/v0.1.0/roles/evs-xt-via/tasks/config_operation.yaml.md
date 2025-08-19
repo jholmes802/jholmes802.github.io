@@ -1,5 +1,6 @@
 # config_operation.yaml
 ```yaml
+{% raw %}
 - name: Set Clip Edit By Network
   evs_config:
     server_ip: "{{ inventory_hostname }}"

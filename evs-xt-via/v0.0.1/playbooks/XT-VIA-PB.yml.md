@@ -1,5 +1,6 @@
 # XT-VIA-PB.yml
 ```yaml
+{% raw %}
 - name: XT-VIA Send Config Lines
   hosts: xt-via
   remote_user: root
@@ -169,4 +170,5 @@
       delegate_to: 127.0.0.1
       loop: "{{ range(1, 17) | list }}"
       when: true
+{% endraw %}
 ```

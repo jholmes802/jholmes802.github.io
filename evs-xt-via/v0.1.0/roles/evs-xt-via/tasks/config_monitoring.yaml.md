@@ -1,5 +1,6 @@
 # config_monitoring.yaml
 ```yaml
+{% raw %}
 ---
 - name: Configure Base Config
   evs_config:

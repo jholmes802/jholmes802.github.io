@@ -7,6 +7,7 @@ This is a simplified view of the entire project and focuses on the components an
 ### Inventory Files
 
 ```yaml
+{% raw %}
 xt-via:
   hosts:
     10.64.4.101:
@@ -69,6 +70,7 @@ ip-director:
 The playbooks are fairly simple, this is the most basic one.
 
 ```yaml
+{% raw %}
 - name: EVS XT-VIA Setup and Config Playbook
   hosts: xt-via
   gather_facts: false
@@ -89,6 +91,7 @@ The playbooks are fairly simple, this is the most basic one.
 This role is what runs all the tasks, it is not all the tasks, it imports them from other files to make organization easier. 
 
 ```yaml
+{% raw %}
 # Tasks file for EVS XT-VIA Setup and Config
 
 - name: Collect Info
@@ -174,6 +177,7 @@ This role is what runs all the tasks, it is not all the tasks, it imports them f
 These are a few of the tasks that are using the evs_server module.
 
 ```yaml
+{% raw %}
 ---
 - name: Set Facility Name
   evs_server:
@@ -189,6 +193,7 @@ These are a few hand picks tasks to represent how we are setting config values.
 Many of these inherit from the default values file such as the defaul video codec is pulled from there.  
 
 ```yaml
+{% raw %}
 ---
 - name: Configure Base Config
   evs_config:
@@ -237,6 +242,7 @@ Many of these inherit from the default values file such as the defaul video code
 These are a few LiveIP tasks that are using the evs_liveip module. These sections are a lot larger as there are more settings to get right for them. 
 
 ```yaml
+{% raw %}
 ---
 # Main Input Stuff
 - name: Set Live IP Input Video Enabled
@@ -402,6 +408,7 @@ These are a few LiveIP tasks that are using the evs_liveip module. These section
   And some output ones
 
   ```yaml
+{% raw %}
   ---
 # Video Output
 
@@ -570,6 +577,7 @@ These are a few LiveIP tasks that are using the evs_liveip module. These section
 This is to handle settings like the PTP Domain which I do not have a great way to build into the noraml class structure. 
 
 ```yaml
+{% raw %}
 - name: Set PTP Domain
   evs_liveip_raw:
     server_ip: "{{ inventory_hostname }}"

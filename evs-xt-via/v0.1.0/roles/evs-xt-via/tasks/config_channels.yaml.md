@@ -1,6 +1,7 @@
 # config_channels.yaml
 
 ```yaml
+{% raw %}
 ---
 - name: Configure Base Config
   evs_config:

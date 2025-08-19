@@ -2,6 +2,7 @@
 
 
 ```yaml
+{% raw %}
 # To run this:: ansible-playbook -i inventories/064-Falgship/flahship-a-invInit.yml XT-VIA-LaunchCFG.yml
 # This ansible playbook will launch a sepcific configline
 - name: XT-VIA Send Config Lines
@@ -27,4 +28,5 @@
     - name: Print Result
       ansible.builtin.debug:
         msg: "{{ _result }}"
+{% endraw %}
 ```
