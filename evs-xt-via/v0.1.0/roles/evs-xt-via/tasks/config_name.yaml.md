@@ -3,10 +3,10 @@
 ---
 - name: Update Config Line Name
   evs_config:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ item.config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ item.config_line_number }} {% endraw %}"
     config_parameter: "CFG_PARAM_CONFIG_NAME"
-    config_value: "{{ item.config_name }}"
-  loop: "{{ serverVars.config_lines }}"
+    config_value: "{% raw %} {{ item.config_name }} {% endraw %}"
+  loop: "{% raw %} {{ serverVars.config_lines }} {% endraw %}"
   ```

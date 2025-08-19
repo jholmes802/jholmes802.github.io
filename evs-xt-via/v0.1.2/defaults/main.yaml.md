@@ -8,10 +8,10 @@ config_line_number: 1
 config_name: "8 IN 4 OUT"
 base_config: "Multicam LSM"
 no_fec: false
-serverNumber: "{{ ansible_host | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') }}"
-options_path: "{{ inventory_dir }}/files/evs-configs/evs-{{ serverNumber }}/options/options.json"
-nmos_options_path: "{{ inventory_dir }}/files/evs-configs/evs-{{ serverNumber }}/nmos/nmos_node_options.json"
-repo_base_path: "{{ inventory_dir }}/files/evs-configs"
+serverNumber: "{% raw %} {{ ansible_host | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') }} {% endraw %}"
+options_path: "{% raw %} {{ inventory_dir }} {% endraw %}/files/evs-configs/evs-{% raw %} {{ serverNumber }} {% endraw %}/options/options.json"
+nmos_options_path: "{% raw %} {{ inventory_dir }} {% endraw %}/files/evs-configs/evs-{% raw %} {{ serverNumber }} {% endraw %}/nmos/nmos_node_options.json"
+repo_base_path: "{% raw %} {{ inventory_dir }} {% endraw %}/files/evs-configs"
 
 route_xt_via_input: false
 ptp_domain: 127
@@ -73,91 +73,91 @@ mv_output_format: "1080p"
 
 in_channel_1:
   name: "CAM 1"
-  primary_control: "{{ in_primary_control }}"
-  secondary_control: "{{ in_secondary_control }}"
+  primary_control: "{% raw %} {{ in_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ in_secondary_control }} {% endraw %}"
 in_channel_2:
   name: "CAM 2"
-  primary_control: "{{ in_primary_control }}"
-  secondary_control: "{{ in_secondary_control }}"
+  primary_control: "{% raw %} {{ in_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ in_secondary_control }} {% endraw %}"
 in_channel_3:
   name: "CAM 3"
-  primary_control: "{{ in_primary_control }}"
-  secondary_control: "{{ in_secondary_control }}"
+  primary_control: "{% raw %} {{ in_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ in_secondary_control }} {% endraw %}"
 in_channel_4:
   name: "CAM 4"
-  primary_control: "{{ in_primary_control }}"
-  secondary_control: "{{ in_secondary_control }}"
+  primary_control: "{% raw %} {{ in_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ in_secondary_control }} {% endraw %}"
 in_channel_5:
   name: "CAM 5"
-  primary_control: "{{ in_primary_control }}"
-  secondary_control: "{{ in_secondary_control }}"
+  primary_control: "{% raw %} {{ in_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ in_secondary_control }} {% endraw %}"
 in_channel_6:
   name: "CAM 6"
-  primary_control: "{{ in_primary_control }}"
-  secondary_control: "{{ in_secondary_control }}"
+  primary_control: "{% raw %} {{ in_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ in_secondary_control }} {% endraw %}"
 in_channel_7:
   name: "CAM 7"
-  primary_control: "{{ in_primary_control }}"
-  secondary_control: "{{ in_secondary_control }}"
+  primary_control: "{% raw %} {{ in_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ in_secondary_control }} {% endraw %}"
 in_channel_8:
   name: "CAM 8"
-  primary_control: "{{ in_primary_control }}"
-  secondary_control: "{{ in_secondary_control }}"
+  primary_control: "{% raw %} {{ in_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ in_secondary_control }} {% endraw %}"
 in_channel_9:
   name: "CAM 9"
-  primary_control: "{{ in_primary_control }}"
-  secondary_control: "{{ in_secondary_control }}"
+  primary_control: "{% raw %} {{ in_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ in_secondary_control }} {% endraw %}"
 in_channel_10:
   name: "CAM 10"
-  primary_control: "{{ in_primary_control }}"
-  secondary_control: "{{ in_secondary_control }}"
+  primary_control: "{% raw %} {{ in_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ in_secondary_control }} {% endraw %}"
 in_channel_11:
   name: "CAM 11"
-  primary_control: "{{ in_primary_control }}"
-  secondary_control: "{{ in_secondary_control }}"
+  primary_control: "{% raw %} {{ in_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ in_secondary_control }} {% endraw %}"
 in_channel_12:
   name: "CAM 12"
-  primary_control: "{{ in_primary_control }}"
-  secondary_control: "{{ in_secondary_control }}"
+  primary_control: "{% raw %} {{ in_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ in_secondary_control }} {% endraw %}"
 
 mix_one_channel: "Yes"
 
 out_channel_1:
   name: "PGM 1"
-  primary_control: "{{ out_primary_control }}"
-  secondary_control: "{{ out_secondary_control }}"
-  smpte_334M_encoding: "{{ smpte_334M_encoding }}"
-  mix_one_channel: "{{ mix_one_channel }}"
+  primary_control: "{% raw %} {{ out_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ out_secondary_control }} {% endraw %}"
+  smpte_334M_encoding: "{% raw %} {{ smpte_334M_encoding }} {% endraw %}"
+  mix_one_channel: "{% raw %} {{ mix_one_channel }} {% endraw %}"
 out_channel_2:
   name: "PGM 2"
-  primary_control: "{{ out_primary_control }}"
-  secondary_control: "{{ out_secondary_control }}"
-  smpte_334M_encoding: "{{ smpte_334M_encoding }}"
-  mix_one_channel: "{{ mix_one_channel }}"
+  primary_control: "{% raw %} {{ out_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ out_secondary_control }} {% endraw %}"
+  smpte_334M_encoding: "{% raw %} {{ smpte_334M_encoding }} {% endraw %}"
+  mix_one_channel: "{% raw %} {{ mix_one_channel }} {% endraw %}"
 out_channel_3:
   name: "PGM 3"
-  primary_control: "{{ out_primary_control }}"
-  secondary_control: "{{ out_secondary_control }}"
-  smpte_334M_encoding: "{{ smpte_334M_encoding }}"
-  mix_one_channel: "{{ mix_one_channel }}"
+  primary_control: "{% raw %} {{ out_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ out_secondary_control }} {% endraw %}"
+  smpte_334M_encoding: "{% raw %} {{ smpte_334M_encoding }} {% endraw %}"
+  mix_one_channel: "{% raw %} {{ mix_one_channel }} {% endraw %}"
 out_channel_4:
   name: "PGM 4"
-  primary_control: "{{ out_primary_control }}"
-  secondary_control: "{{ out_secondary_control }}"
-  smpte_334M_encoding: "{{ smpte_334M_encoding }}"
-  mix_one_channel: "{{ mix_one_channel }}"
+  primary_control: "{% raw %} {{ out_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ out_secondary_control }} {% endraw %}"
+  smpte_334M_encoding: "{% raw %} {{ smpte_334M_encoding }} {% endraw %}"
+  mix_one_channel: "{% raw %} {{ mix_one_channel }} {% endraw %}"
 out_channel_5:
   name: "PGM 5"
-  primary_control: "{{ out_primary_control }}"
-  secondary_control: "{{ out_secondary_control }}"
-  smpte_334M_encoding: "{{ smpte_334M_encoding }}"
-  mix_one_channel: "{{ mix_one_channel }}"
+  primary_control: "{% raw %} {{ out_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ out_secondary_control }} {% endraw %}"
+  smpte_334M_encoding: "{% raw %} {{ smpte_334M_encoding }} {% endraw %}"
+  mix_one_channel: "{% raw %} {{ mix_one_channel }} {% endraw %}"
 out_channel_6:
   name: "PGM 6"
-  primary_control: "{{ out_primary_control }}"
-  secondary_control: "{{ out_secondary_control }}"
-  smpte_334M_encoding: "{{ smpte_334M_encoding }}"
-  mix_one_channel: "{{ mix_one_channel }}"
+  primary_control: "{% raw %} {{ out_primary_control }} {% endraw %}"
+  secondary_control: "{% raw %} {{ out_secondary_control }} {% endraw %}"
+  smpte_334M_encoding: "{% raw %} {{ smpte_334M_encoding }} {% endraw %}"
+  mix_one_channel: "{% raw %} {{ mix_one_channel }} {% endraw %}"
 
 media_subnet: 255.255.255.0
 
@@ -168,16 +168,16 @@ clip_edit_by_network: "1"
 
 network_copy_push: "XNet"
 
-xnet_name: "{{ ansible_host | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', 'EVS \\1') }}"
-xnet_number: "{{ ansible_host | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') | int }}"
+xnet_name: "{% raw %} {{ ansible_host | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', 'EVS \\1') }} {% endraw %}"
+xnet_number: "{% raw %} {{ ansible_host | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') | int }} {% endraw %}"
 
-media_ip: "{{ ansible_host | regex_replace('^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{0,3})$', '\\1.\\2.13.\\4') }}"
-media_gateway: "{{ ansible_host | regex_replace('^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{0,3})$', '\\1.\\2.13.1') }}"
+media_ip: "{% raw %} {{ ansible_host | regex_replace('^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{0,3})$', '\\1.\\2.13.\\4') }} {% endraw %}"
+media_gateway: "{% raw %} {{ ansible_host | regex_replace('^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{0,3})$', '\\1.\\2.13.1') }} {% endraw %}"
 
-truck_number: "{{ ansible_host | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') | int}}"
-facility_name: "GCV-{{ system_name | upper }}-{{ truck_unit }}-EVS-{{ ansible_host | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') }}"
+truck_number: "{% raw %} {{ ansible_host | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') | int}} {% endraw %}"
+facility_name: "GCV-{% raw %} {{ system_name | upper }} {% endraw %}-{% raw %} {{ truck_unit }} {% endraw %}-EVS-{% raw %} {{ ansible_host | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') }} {% endraw %}"
 
-st2110_ip: "{{ ansible_host | regex_replace('^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{0,3})$', '\\1.\\2.113.\\4') }}"
-st2110_gateway: "{{ ansible_host | regex_replace('^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{0,3})$', '\\1.\\2.113.1') }}"
+st2110_ip: "{% raw %} {{ ansible_host | regex_replace('^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{0,3})$', '\\1.\\2.113.\\4') }} {% endraw %}"
+st2110_gateway: "{% raw %} {{ ansible_host | regex_replace('^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{0,3})$', '\\1.\\2.113.1') }} {% endraw %}"
 st2110_subnet: 255.255.255.0
 ```

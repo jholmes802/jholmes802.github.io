@@ -3,28 +3,28 @@
 ---
 - name: Set Base EVS Config Path
   ansible.builtin.set_fact:
-    base_evs_config_path: "{{ inventory_dir }}/files/evs-configs"
+    base_evs_config_path: "{% raw %} {{ inventory_dir }} {% endraw %}/files/evs-configs"
 
 - name: Set EVS Config Path
   ansible.builtin.set_fact:
-    evs_config_path: "{{ base_evs_config_path }}/{{ inventory_hostname }}"
+    evs_config_path: "{% raw %} {{ base_evs_config_path }} {% endraw %}/{% raw %} {{ inventory_hostname }} {% endraw %}"
 
 - name: Set EVS Config Subfolder Path
   ansible.builtin.set_fact:
-    config_line_path: "{{ evs_config_path }}/config-lines"
-    liveip_path: "{{ evs_config_path }}/liveip"
-    nmos_path: "{{ evs_config_path }}/nmos"
-    options_path: "{{ evs_config_path }}/options"
+    config_line_path: "{% raw %} {{ evs_config_path }} {% endraw %}/config-lines"
+    liveip_path: "{% raw %} {{ evs_config_path }} {% endraw %}/liveip"
+    nmos_path: "{% raw %} {{ evs_config_path }} {% endraw %}/nmos"
+    options_path: "{% raw %} {{ evs_config_path }} {% endraw %}/options"
 
 - name: Make sure evs Folders Exist
   ansible.builtin.file:
-    path: "{{ item }}"
+    path: "{% raw %} {{ item }} {% endraw %}"
     state: directory
   loop:
-    - "{{ base_evs_config_path }}"
-    - "{{ evs_config_path }}"
-    - "{{ config_line_path }}"
-    - "{{ liveip_path }}"
-    - "{{ nmos_path }}"
-    - "{{ options_path }}"
+    - "{% raw %} {{ base_evs_config_path }} {% endraw %}"
+    - "{% raw %} {{ evs_config_path }} {% endraw %}"
+    - "{% raw %} {{ config_line_path }} {% endraw %}"
+    - "{% raw %} {{ liveip_path }} {% endraw %}"
+    - "{% raw %} {{ nmos_path }} {% endraw %}"
+    - "{% raw %} {{ options_path }} {% endraw %}"
 ```

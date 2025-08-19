@@ -2,13 +2,13 @@
 # Tasks file for EVS XT-VIA Setup and Config
 - name: Poll Server
   ansible.builtin.uri:
-    url: "http://{{ ansible_host }}/"
+    url: "http://{% raw %} {{ ansible_host }} {% endraw %}/"
   tags: ["check-connection"]
   ignore_errors: false
 
 - name: Set Truck Number Varible
   ansible.builtin.set_fact:
-    truck_num: "{{ ansible_host | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') }}"
+    truck_num: "{% raw %} {{ ansible_host | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') }} {% endraw %}"
   tags: ["always"]
 
 - name: Build Folders

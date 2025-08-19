@@ -2,18 +2,18 @@
 ---
 - name: Set Tally Protocol
   evs_config:
-    server_ip: "{{ ansible_host }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ ansible_host }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     config_parameter: "CFG_PARAM_TALLY_PROTOCOL"
-    config_value: "{{ tally_protocol }}"
-  # loop: "{{ serverVars.config_lines }}"
+    config_value: "{% raw %} {{ tally_protocol }} {% endraw %}"
+  # loop: "{% raw %} {{ serverVars.config_lines }} {% endraw %}"
 
 - name: Set Tally Display Index
   evs_config:
-    server_ip: "{{ ansible_host }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ ansible_host }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     config_parameter: "CFG_PARAM_TALLY_FIRST_DISPLAY_INDEX"
-    config_value: "{{ tally_display_index }}"
-  # loop: "{{ serverVars.config_lines }}"```
+    config_value: "{% raw %} {{ tally_display_index }} {% endraw %}"
+  # loop: "{% raw %} {{ serverVars.config_lines }} {% endraw %}"```

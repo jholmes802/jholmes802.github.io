@@ -74,9 +74,9 @@ The playbooks are fairly simple, this is the most basic one.
   gather_facts: false
   vars:
     ansible_python_interpreter: "../../.venv/bin/python"
-    options_path: "{{ repo_base_path }}/EVS-{{ serverNumber }}/NMOS/options.json" #This is where we store the EVS Config Files we save the options.json file fromo the server.
-    serverNumber: "{{ inventory_hostname | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') }}" # Extract the server number from the IP, starting at 101 = 01 and 102 = 02...
-    repo_base_path: /mnt/c/Users/jholmes/03_evs/Configs/{{ project_name }} # This is where we store the configs for the servers.
+    options_path: "{% raw %} {{ repo_base_path }} {% endraw %}/EVS-{% raw %} {{ serverNumber }} {% endraw %}/NMOS/options.json" #This is where we store the EVS Config Files we save the options.json file fromo the server.
+    serverNumber: "{% raw %} {{ inventory_hostname | regex_replace('^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.\\d([0-9]{0,2})$', '\\1') }} {% endraw %}" # Extract the server number from the IP, starting at 101 = 01 and 102 = 02...
+    repo_base_path: /mnt/c/Users/jholmes/03_evs/Configs/{% raw %} {{ project_name }} {% endraw %} # This is where we store the configs for the servers.
 
   roles:
     - role: evs-xt-via
@@ -177,9 +177,9 @@ These are a few of the tasks that are using the evs_server module.
 ---
 - name: Set Facility Name
   evs_server:
-    server_ip: "{{ inventory_hostname }}"
-    facility_name: "{{ facility_name }}"
-    session_id: "{{ evs_facts.session_id }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    facility_name: "{% raw %} {{ facility_name }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
 ```
 
 
@@ -192,43 +192,43 @@ Many of these inherit from the default values file such as the defaul video code
 ---
 - name: Configure Base Config
   evs_config:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     config_parameter: "CFG_PARAM_BASE_CONFIG"
-    config_value: "{{ base_config }}"
+    config_value: "{% raw %} {{ base_config }} {% endraw %}"
 
 
 - name: Configure Video Interface
   evs_config:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     config_parameter: "CFG_PARAM_VIDEO_3G_DUAL_MODE"
-    config_value: "{{ video_interface }}"
+    config_value: "{% raw %} {{ video_interface }} {% endraw %}"
 
 - name: Configure Number of Ins
   evs_config:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     config_parameter: "CFG_PARAM_NB_RECORDER"
-    config_value: "{{ record_channels }}"
+    config_value: "{% raw %} {{ record_channels }} {% endraw %}"
 
 - name: Configure Ins Disk Use
   evs_config_disk_use:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
-    channels_in: "{{ record_channels }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
+    channels_in: "{% raw %} {{ record_channels }} {% endraw %}"
 
 - name: Configure Number Of Outs
   evs_config:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     config_parameter: "CFG_PARAM_NB_PLAYER"
-    config_value: "{{ play_channels }}"
+    config_value: "{% raw %} {{ play_channels }} {% endraw %}"
 ```
 
 
@@ -241,162 +241,162 @@ These are a few LiveIP tasks that are using the evs_liveip module. These section
 # Main Input Stuff
 - name: Set Live IP Input Video Enabled
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "inputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "video"
     parameter: "enable"
     value: "true"
-  loop: "{{ range(1, record_channels | int + 1) | list }}"
+  loop: "{% raw %} {{ range(1, record_channels | int + 1) | list }} {% endraw %}"
   tags: ["enable"]
 
 - name: Set Live IP Input Video Multicast
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "inputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "video"
     parameter: "dest_addr"
-    value: "{{valid_out1_multicast}}"
-  loop: "{{ range(1, record_channels | int + 1) | list }}"
+    value: "{% raw %} {{valid_out1_multicast}} {% endraw %}"
+  loop: "{% raw %} {{ range(1, record_channels | int + 1) | list }} {% endraw %}"
   when: route_xt_via_input
 
 - name: Set Live IP Input Video Destination Port
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "inputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "video"
     parameter: "enable"
-    value: "{{ xt_via_2110_ip_info['RX']['IN '+ '{:02}'.format(item) | string + '-01']['UDP_PORT'] }}"
-  loop: "{{ range(1, record_channels | int + 1) | list }}"
+    value: "{% raw %} {{ xt_via_2110_ip_info['RX']['IN '+ '{:02}'.format(item) | string + '-01']['UDP_PORT'] }} {% endraw %}"
+  loop: "{% raw %} {{ range(1, record_channels | int + 1) | list }} {% endraw %}"
 
 # Audio G1
 
 - name: Set Live IP Input Audio G1 Enabled
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "inputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "audio_g1"
     parameter: "enable"
     value: "true"
-  loop: "{{ range(1, record_channels | int + 1) | list }}"
+  loop: "{% raw %} {{ range(1, record_channels | int + 1) | list }} {% endraw %}"
   tags: ["enable"]
   
 
 - name: Set Live IP Input Audio G1 Multicast
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "inputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "audio_g1"
     parameter: "dest_addr"
-    value: "{{valid_out1_multicast_audio_g1}}"
-  loop: "{{ range(1, record_channels | int + 1) | list }}"
+    value: "{% raw %} {{valid_out1_multicast_audio_g1}} {% endraw %}"
+  loop: "{% raw %} {{ range(1, record_channels | int + 1) | list }} {% endraw %}"
   when: route_xt_via_input
 
 - name: Set Live IP Input Audio G1 Destination Port
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "inputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "audio_g1"
     parameter: "enable"
-    value: "{{ xt_via_2110_ip_info['RX']['IN '+ '{:02}'.format(item) + '-01']['UDP_PORT'] }}"
-  loop: "{{ range(1, record_channels | int + 1) | list }}"
+    value: "{% raw %} {{ xt_via_2110_ip_info['RX']['IN '+ '{:02}'.format(item) + '-01']['UDP_PORT'] }} {% endraw %}"
+  loop: "{% raw %} {{ range(1, record_channels | int + 1) | list }} {% endraw %}"
 
 # Audio G2
 
 - name: Set Live IP Input Audio G2 Enabled
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "inputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "audio_g2"
     parameter: "enable"
     value: "true"
-  loop: "{{ range(1, record_channels | int + 1) | list }}"
+  loop: "{% raw %} {{ range(1, record_channels | int + 1) | list }} {% endraw %}"
   tags: ["enable"]
 
 - name: Set Live IP Input Audio G2 Multicast
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "inputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "audio_g2"
     parameter: "dest_addr"
-    value: "{{valid_out1_multicast_audio_g2}}"
-  loop: "{{ range(1, record_channels | int + 1) | list }}"
+    value: "{% raw %} {{valid_out1_multicast_audio_g2}} {% endraw %}"
+  loop: "{% raw %} {{ range(1, record_channels | int + 1) | list }} {% endraw %}"
   when: route_xt_via_input
 
 - name: Set Live IP Input Audio G2 Destination Port
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "inputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "audio_g2"
     parameter: "enable"
-    value: "{{ xt_via_2110_ip_info['RX']['IN '+ '{:02}'.format(item) + '-01']['UDP_PORT'] }}"
-  loop: "{{ range(1, record_channels | int + 1) | list }}"
+    value: "{% raw %} {{ xt_via_2110_ip_info['RX']['IN '+ '{:02}'.format(item) + '-01']['UDP_PORT'] }} {% endraw %}"
+  loop: "{% raw %} {{ range(1, record_channels | int + 1) | list }} {% endraw %}"
 
 # ANC
 
 - name: Set Live IP Input ANC Enabled
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "inputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "anc"
     parameter: "enable"
     value: "true"
-  loop: "{{ range(1, record_channels | int + 1) | list }}"
+  loop: "{% raw %} {{ range(1, record_channels | int + 1) | list }} {% endraw %}"
   tags: ["enable"]
 
 - name: Set Live IP Input ANC Multicast
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "inputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "anc"
     parameter: "dest_addr"
-    value: "{{valid_out1_multicast_anc}}"
-  loop: "{{ range(1, record_channels | int + 1) | list }}"
+    value: "{% raw %} {{valid_out1_multicast_anc}} {% endraw %}"
+  loop: "{% raw %} {{ range(1, record_channels | int + 1) | list }} {% endraw %}"
   when: route_xt_via_input
 
 - name: Set Live IP Input ANC Destination Port
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "inputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "anc"
     parameter: "enable"
-    value: "{{ xt_via_2110_ip_info['RX']['IN '+ '{:02}'.format(item) + '-01']['UDP_PORT'] }}"
-  loop: "{{ range(1, record_channels | int + 1) | list }}"
+    value: "{% raw %} {{ xt_via_2110_ip_info['RX']['IN '+ '{:02}'.format(item) + '-01']['UDP_PORT'] }} {% endraw %}"
+  loop: "{% raw %} {{ range(1, record_channels | int + 1) | list }} {% endraw %}"
   ```
 
   And some output ones
@@ -407,161 +407,161 @@ These are a few LiveIP tasks that are using the evs_liveip module. These section
 
 - name: Set Live IP Output Video Enabled
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "outputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "video"
     parameter: "enable"
     value: "true"
-  loop: "{{ range(1, play_channels | int + 1) | list }}"
+  loop: "{% raw %} {{ range(1, play_channels | int + 1) | list }} {% endraw %}"
   tags: ["enable"]
 
 - name: Set Live IP Output Video Multicast
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "outputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "video"
     parameter: "dest_addr"
-    value: "{{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['VIDEO_PURPLE'] }}"
-  loop: "{{ range(1, play_channels | int + 1) | list }}"
+    value: "{% raw %} {{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['VIDEO_PURPLE'] }} {% endraw %}"
+  loop: "{% raw %} {{ range(1, play_channels | int + 1) | list }} {% endraw %}"
   
 
 - name: Set Live IP Output Video Destination Port
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "outputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "video"
     parameter: "enable"
-    value: "{{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['UDP_PORT'] }}"
-  loop: "{{ range(1, play_channels | int + 1) | list }}"
+    value: "{% raw %} {{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['UDP_PORT'] }} {% endraw %}"
+  loop: "{% raw %} {{ range(1, play_channels | int + 1) | list }} {% endraw %}"
 
 # Audio G1 Output
 
 - name: Set Live IP Output Video Enabled
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "outputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "audio_g1"
     parameter: "enable"
     value: "true"
-  loop: "{{ range(1, play_channels | int + 1) | list }}"
+  loop: "{% raw %} {{ range(1, play_channels | int + 1) | list }} {% endraw %}"
   tags: ["enable"]
 
 - name: Set Live IP Output Video Multicast
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "outputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "audio_g1"
     parameter: "dest_addr"
-    value: "{{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['AUDIO_G1_PURPLE'] }}"
-  loop: "{{ range(1, play_channels | int + 1) | list }}"
+    value: "{% raw %} {{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['AUDIO_G1_PURPLE'] }} {% endraw %}"
+  loop: "{% raw %} {{ range(1, play_channels | int + 1) | list }} {% endraw %}"
   
 
 - name: Set Live IP Output Video Destination Port
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "outputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "audio_g1"
     parameter: "enable"
-    value: "{{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['UDP_PORT'] }}"
-  loop: "{{ range(1, play_channels | int + 1) | list }}"
+    value: "{% raw %} {{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['UDP_PORT'] }} {% endraw %}"
+  loop: "{% raw %} {{ range(1, play_channels | int + 1) | list }} {% endraw %}"
 
   # Audio G2 Output
 
 - name: Set Live IP Output Video Enabled
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "outputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "audio_g2"
     parameter: "enable"
     value: "true"
-  loop: "{{ range(1, play_channels | int + 1) | list }}"
+  loop: "{% raw %} {{ range(1, play_channels | int + 1) | list }} {% endraw %}"
   tags: ["enable"]
 
 - name: Set Live IP Output Video Multicast
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "outputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "audio_g2"
     parameter: "dest_addr"
-    value: "{{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['AUDIO_G2_PURPLE'] }}"
-  loop: "{{ range(1, play_channels | int + 1) | list }}"
+    value: "{% raw %} {{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['AUDIO_G2_PURPLE'] }} {% endraw %}"
+  loop: "{% raw %} {{ range(1, play_channels | int + 1) | list }} {% endraw %}"
   
 
 - name: Set Live IP Output Video Destination Port
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "outputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "audio_g2"
     parameter: "enable"
-    value: "{{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['UDP_PORT'] }}"
-  loop: "{{ range(1, play_channels | int + 1) | list }}"
+    value: "{% raw %} {{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['UDP_PORT'] }} {% endraw %}"
+  loop: "{% raw %} {{ range(1, play_channels | int + 1) | list }} {% endraw %}"
 
 # ANC Output
 
 - name: Set Live IP Output Video Enabled
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "outputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "anc"
     parameter: "enable"
     value: "true"
-  loop: "{{ range(1, play_channels | int + 1) | list }}"
+  loop: "{% raw %} {{ range(1, play_channels | int + 1) | list }} {% endraw %}"
   tags: ["enable"]
 
 - name: Set Live IP Output Video Multicast
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "outputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "anc"
     parameter: "dest_addr"
-    value: "{{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['ANC_PURPLE'] }}"
-  loop: "{{ range(1, play_channels | int + 1) | list }}"
+    value: "{% raw %} {{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['ANC_PURPLE'] }} {% endraw %}"
+  loop: "{% raw %} {{ range(1, play_channels | int + 1) | list }} {% endraw %}"
   
 
 - name: Set Live IP Output Video Destination Port
   evs_liveip:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     channel_direction: "outputs"
-    channel_number: "{{ item }}"
+    channel_number: "{% raw %} {{ item }} {% endraw %}"
     channel_type: "anc"
     parameter: "enable"
-    value: "{{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['UDP_PORT'] }}"
-  loop: "{{ range(1, play_channels | int + 1) | list }}"
+    value: "{% raw %} {{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['UDP_PORT'] }} {% endraw %}"
+  loop: "{% raw %} {{ range(1, play_channels | int + 1) | list }} {% endraw %}"
 
   ```
 
@@ -572,16 +572,16 @@ This is to handle settings like the PTP Domain which I do not have a great way t
 ```yaml
 - name: Set PTP Domain
   evs_liveip_raw:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     uri: "/liveip/ptp/domain"
-    value: "{{ ptp_domain }}"
+    value: "{% raw %} {{ ptp_domain }} {% endraw %}"
 - name: Set Audio Packet Timing
   evs_liveip_raw:
-    server_ip: "{{ inventory_hostname }}"
-    session_id: "{{ evs_facts.session_id }}"
-    line_number: "{{ config_line_number }}"
+    server_ip: "{% raw %} {{ inventory_hostname }} {% endraw %}"
+    session_id: "{% raw %} {{ evs_facts.session_id }} {% endraw %}"
+    line_number: "{% raw %} {{ config_line_number }} {% endraw %}"
     uri: "/liveip/aes67/packettime"
     value: "125"
 ```
