@@ -10,4 +10,5 @@
     config_parameter: "CFG_PARAM_CONFIG_NAME"
     config_value: "{{ item.config_name }}"
   loop: "{{ serverVars.config_lines }}"
-  ```
+{% endraw %}
+```

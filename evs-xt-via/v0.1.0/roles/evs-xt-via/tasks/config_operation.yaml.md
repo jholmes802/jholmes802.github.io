@@ -18,4 +18,5 @@
     config_parameter: "CFG_PARAM_DEFAULT_COPY_MOVE"
     config_value: "{{ item.network_copy_push }}"
   loop: "{{ serverVars.config_lines }}"
+{% endraw %}
 ```

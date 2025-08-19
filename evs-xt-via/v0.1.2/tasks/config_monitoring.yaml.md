@@ -71,5 +71,5 @@
     config_parameter: "CFG_PARAM_QS4_AUDIOMONITORINGVALUE"
     config_value: "None        "
   when: play_channels == 0
-
+{% endraw %}
 ```

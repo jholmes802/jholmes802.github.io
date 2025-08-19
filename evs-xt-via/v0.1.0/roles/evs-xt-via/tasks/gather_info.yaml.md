@@ -14,4 +14,5 @@
 - name: Register Server from List by Truck IP
   set_fact:
     serverVars: "{{ servers | selectattr('truck_ip', 'equalto', inventory_hostname) | first }}"
+{% endraw %}
 ```

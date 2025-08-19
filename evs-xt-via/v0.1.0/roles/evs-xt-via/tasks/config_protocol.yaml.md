@@ -19,4 +19,5 @@
     config_parameter: "CFG_PARAM_TALLY_FIRST_DISPLAY_INDEX"
     config_value: "{{ item.tally_display_index }}"
   loop: "{{ serverVars.config_lines }}"
+{% endraw %}
 ```

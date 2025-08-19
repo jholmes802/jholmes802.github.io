@@ -63,6 +63,7 @@ ip-director:
     10.64.4.44:
     10.64.4.45:
     10.64.4.46:
+{% endraw %}
 ```
 
 ### Playbooks
@@ -84,6 +85,7 @@ The playbooks are fairly simple, this is the most basic one.
     - role: evs-xt-via
       tags: ["setup"]
       delegate_to: 127.0.0.1
+{% endraw %}
 ```
 
 ### evs-xt-via Role
@@ -168,7 +170,7 @@ This role is what runs all the tasks, it is not all the tasks, it imports them f
 - name: LiveIP Video Config MV Outputs
   import_tasks: liveip_mv_outputs.yaml
   tags: ["liveIP", "liveIP-mv-outputs", "liveIP-mv"]
-
+{% endraw %}
 ```
 
 
@@ -184,6 +186,7 @@ These are a few of the tasks that are using the evs_server module.
     server_ip: "{{ inventory_hostname }}"
     facility_name: "{{ facility_name }}"
     session_id: "{{ evs_facts.session_id }}"
+{% endraw %}
 ```
 
 
@@ -234,6 +237,7 @@ Many of these inherit from the default values file such as the defaul video code
     line_number: "{{ config_line_number }}"
     config_parameter: "CFG_PARAM_NB_PLAYER"
     config_value: "{{ play_channels }}"
+{% endraw %}
 ```
 
 
@@ -403,11 +407,12 @@ These are a few LiveIP tasks that are using the evs_liveip module. These section
     parameter: "enable"
     value: "{{ xt_via_2110_ip_info['RX']['IN '+ '{:02}'.format(item) + '-01']['UDP_PORT'] }}"
   loop: "{{ range(1, record_channels | int + 1) | list }}"
-  ```
+{% endraw %}
+```
 
   And some output ones
 
-  ```yaml
+```yaml
 {% raw %}
   ---
 # Video Output
@@ -569,8 +574,8 @@ These are a few LiveIP tasks that are using the evs_liveip module. These section
     parameter: "enable"
     value: "{{ xt_via_2110_ip_info['TX']['CLEAN OUT '+ '{:02}'.format(item) ]['UDP_PORT'] }}"
   loop: "{{ range(1, play_channels | int + 1) | list }}"
-
-  ```
+{% endraw %}
+```
 
 ### Live IP Options
 
@@ -592,6 +597,7 @@ This is to handle settings like the PTP Domain which I do not have a great way t
     line_number: "{{ config_line_number }}"
     uri: "/liveip/aes67/packettime"
     value: "125"
+{% endraw %}
 ```
 
 ## Ansible Modules

@@ -29,4 +29,5 @@
     config_parameter: "CFG_PARAM_GENLOCK_INPUT"
     config_value: "{{ item.video_genlock }}"
   loop: "{{ serverVars.config_lines }}"
+{% endraw %}
 ```

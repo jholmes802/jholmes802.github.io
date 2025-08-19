@@ -10,5 +10,5 @@
     config_parameter: "CFG_PARAM_QS_HD_OUTPUT_FORMAT"
     config_value: "{{ item.mv_output_format }}"
   loop: "{{ serverVars.config_lines }}"
-
+{% endraw %}
 ```

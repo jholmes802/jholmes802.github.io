@@ -906,4 +906,5 @@
     config_value: "{{ out_channel_6.mix_one_channel }}"
   # loop: "{{ serverVars.config_lines }}"
   when: play_channels | int >= 6
+{% endraw %}
 ```

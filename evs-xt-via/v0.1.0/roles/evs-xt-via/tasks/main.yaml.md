@@ -32,4 +32,5 @@
 
 - name: Config Operation
   import_tasks: config_operation.yaml
+{% endraw %}
 ```

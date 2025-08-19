@@ -17,4 +17,6 @@
     line_number: "{{ config_line_number }}"
     config_parameter: "CFG_PARAM_TALLY_FIRST_DISPLAY_INDEX"
     config_value: "{{ tally_display_index }}"
-  # loop: "{{ serverVars.config_lines }}"```
+  # loop: "{{ serverVars.config_lines }}"
+  {% endraw %}
+  ```

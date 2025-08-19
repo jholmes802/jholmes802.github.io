@@ -238,4 +238,5 @@
     parameter: "dest_port"
     value: "{{ xt_via_2110_ip_info['RX']['IN '+ '{:02}'.format(item) + '-01']['UDP_PORT'] }}"
   loop: "{{ range(1, record_channels | int + 1) | list }}"
+{% endraw %}
 ```

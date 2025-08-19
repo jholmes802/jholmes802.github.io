@@ -37,4 +37,5 @@
         dest: "{{ nmos_path }}"
       delegate_to: 127.0.0.1
       ignore_errors: true
+{% endraw %}
 ```

@@ -22,4 +22,6 @@
 - name: Send NMOS Options JSON to Server
   shell:
     cmd: "curl --silent --user evsData:evs! ftp://{{ ansible_host }}/user/nmos_node_options.json -T {{ nmos_options_path }}"
-  delegate_to: 127.0.0.1```
+  delegate_to: 127.0.0.1
+{% endraw %}
+```

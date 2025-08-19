@@ -18,4 +18,7 @@
 
 - name: Load Multicast Information
   ansible.builtin.set_fact:
-    xt_via_2110_ip_info: "{{ lookup('file', evs_config_path + '/MulticastIP-' + truck_num + '.json') }}"```
+    xt_via_2110_ip_info: "{{ lookup('file', evs_config_path + '/MulticastIP-' + truck_num + '.json') }}"
+    
+{% endraw %}
+```

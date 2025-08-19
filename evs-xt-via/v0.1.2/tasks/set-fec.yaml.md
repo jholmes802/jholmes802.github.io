@@ -31,4 +31,5 @@
     content: "{{ options_json | to_nice_json }}"
     dest: "{{ repo_base_path }}/EVS-{{ serverNumber }}/NMOS/options.json"
   delegate_to: 127.0.0.1
+{% endraw %}
 ```

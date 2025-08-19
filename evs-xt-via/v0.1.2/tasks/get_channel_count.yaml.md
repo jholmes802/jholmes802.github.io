@@ -58,4 +58,5 @@
     ssmo_1_count: "{{ ssmo_1_count_get.value }}"
     ssmo_2_speed: "{{ ssmo_2_speed_get.value }}"
     ssmo_2_count: "{{ ssmo_2_count_get.value }}"
+{% endraw %}
 ```

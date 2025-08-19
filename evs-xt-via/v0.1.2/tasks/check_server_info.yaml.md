@@ -6,4 +6,5 @@
     server_ip: "{{ ansible_host }}"
     facility_name: "{{ facility_name }}"
     session_id: "{{ evs_facts.session_id }}"
+{% endraw %}
 ```

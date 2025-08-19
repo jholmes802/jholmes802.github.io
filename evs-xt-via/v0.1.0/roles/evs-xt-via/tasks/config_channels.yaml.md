@@ -533,5 +533,5 @@
     config_value: "{{ item.out_channel_6.smpte_334M_encoding }}"
   loop: "{{ serverVars.config_lines }}"
   when: item.play_channels >= 6 and item.video_interface == "XiP"
-
+{% endraw %}
 ```

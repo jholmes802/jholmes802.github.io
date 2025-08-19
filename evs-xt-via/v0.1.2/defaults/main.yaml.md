@@ -181,4 +181,5 @@ facility_name: "GCV-{{ system_name | upper }}-{{ truck_unit }}-EVS-{{ ansible_ho
 st2110_ip: "{{ ansible_host | regex_replace('^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{0,3})$', '\\1.\\2.113.\\4') }}"
 st2110_gateway: "{{ ansible_host | regex_replace('^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{0,3})$', '\\1.\\2.113.1') }}"
 st2110_subnet: 255.255.255.0
+{% endraw %}
 ```
