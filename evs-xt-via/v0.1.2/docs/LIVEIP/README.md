@@ -1,10 +1,10 @@
 # LiveIP
 
-[GetParameter.md](GetParameter.md)
+[GetParameter.md](GETPARAMETER.md)
 
-[LiveIP_Subtreeaction.md](LiveIP_Subtreeaction.md)
+[LiveIP_Subtreeaction.md](LIVEIP_SUBTREEACTION.md)
 
-[SetParameter.md](SetParameter.md)
+[SetParameter.md](SETPARAMETER.md)
 
 
 These are documents and research specific to the EVS LiveIP setup.
