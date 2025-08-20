@@ -14,7 +14,7 @@ The purpose of this toolkit is that it will create a deployment to be one touch 
 
 [docs](docs)
 
-[ExampleResponses] (/ExampleResponses)
+[ExampleResponses](ExampleResponses)
 
 [playbooks](playbooks.py.md)
 
