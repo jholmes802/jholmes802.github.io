@@ -7,7 +7,7 @@ The purpose of this toolkit is that it will create a deployment to be one touch 
 
 [library](library)
 
-[playbooks](playbooks.py.md)
+[playbooks](playbooks)
 
 [evsLiveIP.py](evsLiveIP.py.md)
 
