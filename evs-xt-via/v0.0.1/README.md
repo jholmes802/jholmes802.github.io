@@ -3,8 +3,13 @@
 The purpose of this toolkit is that it will create a deployment to be one touch commissioning on XT-VIA servers.
 
 ## Navigation
+[ExampleResponses] (/ExampleResponses)
+[library](/library)
+[playbooks](/playbooks)
+[evsLiveIP.py](/evsLiveIP.py.md)
+[evsWebSession.py](/evsWebSession)
+[sendCodes.py](/sendCodes.py)
 
-[evsWebSession.py] (/evsWebSession)
 
 ## Bounds and Limits
 
