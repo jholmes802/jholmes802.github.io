@@ -1,14 +1,14 @@
 # EVS-XT-VIA Role
 
-[defaults](/defaults/main.yaml.md)
+[defaults](defaults/main.yaml.md)
 
-[library](/library)
+[library](library)
 
-[module_utils](/module_utils)
+[module_utils](module_utils)
 
-[tasks](/tasks)
+[tasks](tasks)
 
-[vars](/vars/main.yaml.md)
+[vars](vars/main.yaml.md)
 
 This is the EVS-XT-VIA role which started as just a simple playbook in v0.0.1
 The defaults folder holds variable defaults, these are easily overruled by host variables or group variables. 

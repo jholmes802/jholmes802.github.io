@@ -19,8 +19,8 @@ This is built on [Anisble](https://docs.ansible.com/) a tool developed by [Red H
     This was written to fit into our larger company’s automation pipeline and workflow to set up our system’s easier and more efficiently. I worked with coworkers to develop not only the modules which accessed the servers but the variable and task structure around it so it would match other projects we have done. One of the biggest challenges I had was writing it abstractly enough for the server with so many parameters it was critical that I did not have to create classes for each and control them that way, I needed something more generic. We had many meeting and revisions to get to this point of the software. One of the complexities was creating a structure to handle all this data and store it in an easy fashion that was quick to debug and develop as I went so JSON structure made sense to, working and manipulating data as dictionaries was the simplest way. 
 
 # The Code
-### [evs-xt-via](/evs-xt-via)
-### [v0.0.1](/evs-xt-via/v0.0.1/)
-### [v0.1.0](/evs-xt-via/v0.1.0/)
-### [v0.1.2](/evs-xt-via/v0.1.2/)
+### [evs-xt-via](evs-xt-via)
+### [v0.0.1](evs-xt-via/v0.0.1/)
+### [v0.1.0](evs-xt-via/v0.1.0/)
+### [v0.1.2](evs-xt-via/v0.1.2/)
 

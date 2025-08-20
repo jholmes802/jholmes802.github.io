@@ -4,17 +4,17 @@ The purpose of this toolkit is that it will create a deployment to be one touch 
 
 ## Navigation
 
-[docs](/docs)
+[docs](docs)
 
 [ExampleResponses] (/ExampleResponses)
 
-[playbooks](/playbooks.py.md)
+[playbooks](playbooks.py.md)
 
-[roles](/roles)
+[roles](roles)
 
-[show_vars](/show_vars/testing.yaml.md)
+[show_vars](show_vars/testing.yaml.md)
 
-[requirements.txt](/requirements.txt.md)
+[requirements.txt](requirements.txt.md)
 
 ## Bounds and Limits
 

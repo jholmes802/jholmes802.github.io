@@ -1,6 +1,6 @@
 # Playbooks
 
-[xt-via-setup.yaml](/xt-via-setup.yaml.md)
+[xt-via-setup.yaml](xt-via-setup.yaml.md)
 
 ## What are playbooks
 
