@@ -1,5 +1,0 @@
-defaults:
-  - scope:
-      path: "evs-xt-via"
-    values:
-      render_with_liquid: false
