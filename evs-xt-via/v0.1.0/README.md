@@ -2,6 +2,20 @@
 
 The purpose of this toolkit is that it will create a deployment to be one touch commissioning on XT-VIA servers based on pre-build variables.
 
+## Navigation
+
+[docs](/docs)
+
+[ExampleResponses] (/ExampleResponses)
+
+[playbooks](/playbooks.py.md)
+
+[roles](/roles)
+
+[show_vars](/show_vars/testing.yaml.md)
+
+[requirements.txt](/requirements.txt.md)
+
 ## Bounds and Limits
 
 This tools kit will be limited to things it can do/execute over standard and "safe" methods.

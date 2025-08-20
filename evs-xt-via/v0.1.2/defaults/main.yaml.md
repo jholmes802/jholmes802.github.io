@@ -1,4 +1,7 @@
 # main.yaml
+
+There is only one file, the main file. This holds all the variables that are used for the role. 
+
 ```yaml
 {% raw %}
 showname: "test-show"

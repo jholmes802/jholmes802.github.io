@@ -1,4 +1,7 @@
 # liveIPBuild.yaml
+
+This is a custom python script that convers the LiveIP CSV sheets we have into more machine readable JSON files. 
+
 ```python
 #!/usr/bin/python3
 

@@ -1,4 +1,7 @@
 # main.yaml
+
+This holds all the information about the role like name, developer and etc.
+
 ```yaml
 {% raw %}
 galaxy_info:
