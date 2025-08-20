@@ -2,6 +2,10 @@
 
 The purpose of this toolkit is that it will create a deployment to be one touch commissioning on XT-VIA servers.
 
+## Navigation
+
+[evsWebSession.py] (/evsWebSession)
+
 ## Bounds and Limits
 
 This tools kit will be limited to things it can do/execute over standard and "safe" methods.
@@ -55,3 +59,4 @@ Using ansible it has a series of built in modules that are used to setup one or 
 - [] Set DNS Servers
 - [] Set Domain
 - [] Build Config Lines 
+
