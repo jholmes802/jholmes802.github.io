@@ -12,7 +12,8 @@ This is built on [Anisble](https://docs.ansible.com/) a tool developed by [Red H
 ## Code Review
 
 Here is a code review I did at the beginning of this course. 
-![](https://youtu.be/emOqEMgcZ6w)
+
+[Video Code Review](https://youtu.be/emOqEMgcZ6w)
 
 # Self Assessment
 
