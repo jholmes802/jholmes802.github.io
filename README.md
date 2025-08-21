@@ -9,6 +9,10 @@ The XT-VIA is a replay server used in a large variety of broadcast events, it is
 
 This is built on [Anisble](https://docs.ansible.com/) a tool developed by [Red Hat](https://www.redhat.com/) with a hugh community behind it. Building modules, libraries, roles and collections to support the configuration of thousands of types of systems, it has accelerated out deployment into the future. 
 
+## Code Review
+
+Here is a code review I did at the beginning of this course. 
+![](https://youtu.be/emOqEMgcZ6w)
 
 # Self Assessment
 
